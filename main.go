@@ -53,7 +53,7 @@ func init() {
 		return
 	}
 
-	lg.InitializeLog(lg.DebugStatus, lg.LogOff, 99, "[GoHY]", "/var/log/go/hy.log")
+	lg.InitializeLog(lg.DebugStatus, lg.TimeShortFile, "[GoHY]", "", "hiromaily")
 }
 
 func main() {
