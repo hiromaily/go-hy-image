@@ -8,12 +8,12 @@ import (
 	"image/color"
 	//"image/draw"
 	//"image/jpeg"
+	"fmt"
 	"image/png"
 	"io/ioutil"
 	"os"
 
-	"fmt"
-	lg "github.com/hiromaily/golibs/log"
+	"github.com/rs/zerolog/log"
 )
 
 type Config struct {
@@ -52,28 +52,24 @@ func init() {
 		os.Exit(1)
 		return
 	}
-
-	lg.InitializeLog(lg.DebugStatus, lg.TimeShortFile, "[GoHY]", "", "hiromaily")
 }
 
 func main() {
 	jsonByte, err := loadJSONFile(*jsonPath)
 	if err != nil {
-		lg.Errorf("After calling loadJSONFile(): %v", err)
+		log.Error().Err(err).Msg("failed to call loadJSONFile()")
 		return
 	}
 
 	var conf Config
 	err = json.Unmarshal(jsonByte, &conf)
 	if err != nil {
-		lg.Errorf("After calling json.Unmarshal(): %v", err)
+		log.Error().Err(err).Msg("failed to call json.Unmarshal()")
 		return
 	}
-	//lg.Debugf("%#v", conf)
 
 	//
 	createAllImage(&conf)
-
 }
 
 func loadJSONFile(filePath string) ([]byte, error) {

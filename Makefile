@@ -1,8 +1,11 @@
-genjson:
+.PHONY: gen-json
+gen-json:
 	gogentype -file $(PWD)/jsons/config.json
 
-bld:
-	go build -i -race -v -o ${GOPATH}/bin/gohy main.go
+.PHONY: build
+build:
+	go build -v -o ${GOPATH}/bin/gohy main.go
 
+.PHONY: run
 run:
-	go run -race main.go -j $(PWD)/jsons/config.json
+	go run main.go -j $(PWD)/jsons/config.json
