@@ -6,11 +6,11 @@ import (
 	"flag"
 	"image"
 	"image/color"
+
 	//"image/draw"
 	//"image/jpeg"
 	"fmt"
 	"image/png"
-	"io/ioutil"
 	"os"
 
 	"github.com/rs/zerolog/log"
@@ -79,7 +79,7 @@ func loadJSONFile(filePath string) ([]byte, error) {
 		return nil, err
 	}
 
-	file, err := ioutil.ReadFile(filePath)
+	file, err := os.ReadFile(filePath)
 	if err != nil {
 		return nil, err
 	}
